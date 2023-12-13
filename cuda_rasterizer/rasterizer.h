@@ -10,7 +10,7 @@
  */
 
 #ifndef CUDA_RASTERIZER_H_INCLUDED
-#define CUDA_RASTERIZER_H_INCLUDED
+#define CUDA_RASTERIZER_H_INCLUDED 
 
 #include <vector>
 #include <functional>
@@ -42,6 +42,7 @@ namespace CudaRasterizer
 			const float* scales,
 			const float scale_modifier,
 			const float* rotations,
+			const float* normals,
 			const float* cov3D_precomp,
 			const float* viewmatrix,
 			const float* projmatrix,
@@ -49,6 +50,9 @@ namespace CudaRasterizer
 			const float tan_fovx, float tan_fovy,
 			const bool prefiltered,
 			float* out_color,
+			float* out_depths,
+			float* out_amax_depths,
+			float* out_normals,
 			int* radii = nullptr,
 			bool debug = false);
 
@@ -59,6 +63,7 @@ namespace CudaRasterizer
 			const float* means3D,
 			const float* shs,
 			const float* colors_precomp,
+			const float* normals,
 			const float* scales,
 			const float scale_modifier,
 			const float* rotations,
@@ -72,10 +77,13 @@ namespace CudaRasterizer
 			char* binning_buffer,
 			char* image_buffer,
 			const float* dL_dpix,
+			const float* dL_depths,
+			const float* dL_out_normals,
 			float* dL_dmean2D,
 			float* dL_dconic,
 			float* dL_dopacity,
 			float* dL_dcolor,
+			float* dL_dnormals,
 			float* dL_dmean3D,
 			float* dL_dcov3D,
 			float* dL_dsh,
